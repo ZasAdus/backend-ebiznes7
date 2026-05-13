@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo "Running detekt before commit"
+
+./gradlew detekt
+
+if [ $? -ne 0 ]; then
+  	echo "Detekt failed, update the code before committing, for more information check app/build/reports/detekt/detekt.html"
+  	exit 1
+else
+	echo "Detekt passed, you can proceed with the commit"
+fi
+	exit 0

@@ -35,7 +35,6 @@ class ApplicationControler(
 
         return productRepository.save(product)
     }
-
     data class BuyRequest(
         val productId: Long,
         val quantity: Int
