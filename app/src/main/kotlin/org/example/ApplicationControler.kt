@@ -1,6 +1,13 @@
 package org.example
 
-import org.springframework.web.bind.annotation.*
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.CrossOrigin
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api")
@@ -18,10 +25,10 @@ class ApplicationControler(
     @PostMapping("/payments")
     fun buy(@RequestBody request: BuyRequest): Product {
         val product = productRepository.findById(request.productId)
-            .orElseThrow { RuntimeException("Product not found") }
+            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found") }
 
         if (product.quantity < request.quantity) {
-            throw RuntimeException("Not enough stock")
+            throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Not enough stock")
         }
 
         product.quantity -= request.quantity

@@ -1,9 +1,10 @@
 plugins {
-    kotlin("jvm") version "1.9.22"
-    kotlin("plugin.spring") version "1.9.22"
+    kotlin("jvm") version "2.0.10"
+    kotlin("plugin.spring") version "2.0.10"
     id("org.springframework.boot") version "3.2.2"
     id("io.spring.dependency-management") version "1.1.4"
-    kotlin("plugin.jpa") version "1.9.22"
+    kotlin("plugin.jpa") version "2.0.10"
+    id("io.gitlab.arturbosch.detekt") version "1.23.7"
 }
 
 group = "com.projekt"
